@@ -15,46 +15,47 @@
 </header>
 <main>
     <div class="current-layout">
-    <section id="current">
-        <h2>Поточна погода</h2>
-        <img src="assets/img/sunny.png" alt="Сонячно, без опадів">
-        <p>+11&deg;C, ясно</p>
-    </section>
-        
-    <aside>
-        <p>Краще вдягнути легкий одяг.(приклад)</p>
-    </aside>
+        <section id="current" class="mild">
+            <h2>Поточна погода</h2>
+            <div class="current-weather">
+                <img src="assets/img/sun.svg" alt="">
+                <p><strong class="temperature">+11&deg;C</strong><br>Ясно</p>
+            </div>
+        </section>
+        <aside>
+            <p>Краще вдягнути легкий одяг.(приклад)</p>
+        </aside>
     </div>
     <section id="forecast">
         <h2>Прогноз на тиждень</h2>
         <div class="cards">
-        <article class="card">
+        <article class="card mild">
             <h3>Понеділок</h3>
-            <p>+10&deg;C, дощ</p>
+            <p><strong class="temperature">+10&deg;C</strong><br>Дощ</p>
         </article>
-        <article class="card">
+        <article class="card mild">
             <h3>Вівторок</h3>
-            <p>+13&deg;C, хмарно</p>
+            <p><strong class="temperature">+13&deg;C</strong><br>Хмарно</p>
         </article>
-        <article class="card">
+        <article class="card cold">
             <h3>Середа</h3>
-            <p>+7&deg;C, злива</p>
+            <p><strong class="temperature">+7&deg;C</strong><br>Злива</p>
         </article>
-        <article class="card">
+        <article class="card mild">
             <h3>Четвер</h3>
-            <p>+12&deg;C, ясно</p>
+            <p><strong class="temperature">+12&deg;C</strong><br>Ясно</p>
         </article>
-        <article class="card">
+        <article class="card mild">
             <h3>П'ятниця</h3>
-            <p>+13&deg;C, хмарно</p>
+            <p><strong class="temperature">+19&deg;C</strong><br>Хмарно</p>
         </article>
-        <article class="card">
+        <article class="card warm">
             <h3>Субота</h3>
-            <p>+9&deg;C, хмарно</p>
+            <p><strong class="temperature">+23&deg;C</strong><br>Хмарно</p>
         </article>
-        <article class="card">
+        <article class="card warm">
             <h3>Неділя</h3>
-            <p>+10&deg;C, ясно</p>
+            <p><strong class="temperature">+27&deg;C</strong><br>Ясно</p>
         </article>
         </div>
     </section>

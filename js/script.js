@@ -1,5 +1,4 @@
 console.log('script.js підключено')
-document.querySelector('#forecast .cards > article').remove();
 const forecast = [
     { day: 'Понеділок', tempC: 10, description: 'Дощ' },
     { day: 'Вівторок', tempC: 13, description: 'Хмарно' },
@@ -30,7 +29,8 @@ printForecast(forecast);
 // Створює картки прогнозу й додає їх до сітки.
 function renderForecast(days) {
     const cardsContainer = listContainer.querySelector('.cards');
-    
+    cardsContainer.replaceChildren();
+
     for (const entry of days) {
         const card = document.createElement('article');
 
@@ -58,17 +58,57 @@ function renderForecast(days) {
         }
         cardsContainer.append(card);
     }
+    const avgTempElement = document.querySelector('#avg-temp');
+    let totalTemp = 0;
+
+    for (const entry of days) {
+        totalTemp += entry.tempC;
+    }
+
+    const averageTemp = totalTemp / days.length;
+    avgTempElement.textContent =
+        `Середня температура за тиждень: ${averageTemp.toFixed(1).replace('.', ',')} °C`;
 }
 
 renderForecast(forecast);
 
-const avgTempElement = document.querySelector('#avg-temp');
-let totalTemp = 0;
+const form = document.querySelector('#forecast-form');
 
-for (const entry of forecast) {
-    totalTemp += entry.tempC;
-}
+const tempInput = form.elements.namedItem('tempC');
+// Перевіряє діапазон температури під час введення.
+tempInput.addEventListener('input', () => {
+    const tempC = tempInput.valueAsNumber;
 
-const averageTemp = totalTemp / forecast.length;
-avgTempElement.textContent =
-    `Середня температура за тиждень: ${averageTemp.toFixed(1).replace('.', ',')} °C`;
+    if (tempC < -50 || tempC > 50) {
+        tempInput.setCustomValidity('Температура поза реалістичним діапазоном');
+    } else {
+        tempInput.setCustomValidity('');
+    }
+});
+// Додає запис до прогнозу без перезавантаження сторінки.
+form.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const day = form.elements.namedItem('day').value.trim();
+    const tempC = Number(form.elements.namedItem('tempC').value);
+    const description = form.elements.namedItem('description').value.trim();
+
+    forecast.push({ day, tempC, description });
+    renderForecast(forecast);
+    form.reset();
+});
+
+const warmestDayButton = document.querySelector('#warmest-day-button');
+const warmestDayResult = document.querySelector('#warmest-day-result');
+// Знаходить і показує найтепліший день.
+warmestDayButton.addEventListener('click', () => {
+    let warmestDay = forecast[0];
+
+    for (const entry of forecast) {
+        if (entry.tempC > warmestDay.tempC) {
+            warmestDay = entry;
+        }
+    }
+
+    warmestDayResult.textContent = `Найтепліший день — ${warmestDay.day}`;
+});

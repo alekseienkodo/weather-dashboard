@@ -36,6 +36,21 @@
         </article>
         </div>
         <p id="avg-temp"></p>
+        <form id="forecast-form">
+            <label for="forecast-day">День тижня</label>
+            <input type="text" id="forecast-day" name="day" required>
+
+            <label for="forecast-temp">Температура, °C</label>
+            <input type="number" id="forecast-temp" name="tempC"
+                   min="-50" max="50" step="any" required>
+
+            <label for="forecast-description">Опис погоди</label>
+            <input type="text" id="forecast-description" name="description">
+
+            <button type="submit">Додати прогноз</button>
+        </form>
+        <button type="button" id="warmest-day-button">Найтепліший день</button>
+        <p id="warmest-day-result"></p>
     </section>
 </main>
 
